@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+
+# # Regression plot - BMI vs Blood Glucose Level
+Explanation - The points are spread across a range of BMI values, indicating variability in BMI among both diabetic and non-diabetic individuals
+Flat Regression Lines: Both regression lines are relatively flat, suggesting a weak or negligible linear relationship between BMI and blood glucose level.
+The regression line for individuals with diabetes (orange) is slightly higher than the line for individuals without diabetes (blue). This indicates that, on average, individuals with diabetes tend to have slightly higher blood glucose levels across the range of BMI values.
+
+Weak Linear Relationship: There is a weak linear relationship between BMI and blood glucose level in this dataset.
