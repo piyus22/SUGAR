@@ -22,3 +22,5 @@ Followed by looking into distribution of blood glucose level across genders
 
 Based on the dataset, further explored the key features that have an imapct in diabetes prediction
 ![Heatmap of features impacting diabetes](images/heatmap_diabetes_features.png)
+
+In the above heatmap, HbA1c_level (40%) and blood_glucose_level (42%) exhibit a significant positive correlation with diabetes. This strong relationship is medically consistent: higher values in these crucial blood markers directly indicate a greater probability of diabetes.
