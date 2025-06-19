@@ -4,4 +4,13 @@ A machine learning-powered tool designed for robust diabetes classification from
 The input dataset - https://www.kaggle.com/code/kashafabbas036/diabetes-dataset-preprocessing
 
 
+**The Challenge: Precision in Diabetes Classification**
+Accurate and early classification of diabetes is crucial for timely intervention and improved patient outcomes. Existing methods often struggle with optimal predictive performance and accessibility for non-technical users.
 
+**Our Solution: SUGAR**
+This project introduces SUGAR (Smart Utilization of Glucose & AI for Risk prediction), a machine learning tool built to enhance the precision of diabetes classification. Leveraging the comprehensive Kaggle Diabetes Prediction Dataset, SUGAR develops and evaluates advanced predictive models. Our primary goal is to identify the most effective classification model, with the ultimate aim of deploying it via a user-friendly web server to make accurate diabetes risk prediction readily accessible.
+
+### Initial data exploration
+The first step is to explore the dataset to understand its structure, identify key features, and uncover initial patterns or anomalies.
+
+![Binning of Age into groups and diabetes comparison across the gender](images/diabetes_prevelance_age_group.png)
