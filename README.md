@@ -14,3 +14,11 @@ This project introduces SUGAR (Smart Utilization of Glucose & AI for Risk predic
 The first step is to explore the dataset to understand its structure, identify key features, and uncover initial patterns or anomalies.
 
 ![Binning of Age into groups and diabetes comparison across the gender](images/diabetes_prevelance_age_group.png)
+
+Followed by looking into distribution of blood glucose level across genders
+![Distribution of blood glucose level](images/distribution_blood_glucose.png)
+
+
+
+Based on the dataset, further explored the key features that have an imapct in diabetes prediction
+![Heatmap of features impacting diabetes](images/heatmap_diabetes_features.png)
