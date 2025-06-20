@@ -23,4 +23,10 @@ Followed by looking into distribution of blood glucose level across genders
 Based on the dataset, further explored the key features that have an imapct in diabetes prediction
 ![Heatmap of features impacting diabetes](images/heatmap_diabetes_features.png)
 
-In the above heatmap, HbA1c_level (40%) and blood_glucose_level (42%) exhibit a significant positive correlation with diabetes. This strong relationship is medically consistent: higher values in these crucial blood markers directly indicate a greater probability of diabetes.
+In the above heatmap, **HbA1c_level (40%)*** and ***blood_glucose_level (42%)*** exhibit a significant positive correlation with diabetes. This strong relationship is medically consistent: higher values in these crucial blood markers directly indicate a greater probability of diabetes.
+
+The same can be seen in the shap plot
+![Shap plot showing the feature importance](images/lightGBM_shap_plot.png)
+
+The most impactful features are clearly num_HbA1c_level and num_blood_glucose_level, followed by num_age and num_bmi. A consistent trend observed is that higher values (red dots) in these top features strongly push the model towards predicting diabetes (positive SHAP values), while lower values (blue dots) decrease that likelihood. This directly aligns with medical understanding, confirming the model relies on diagnostically relevant indicators for robust and interpretable classifications.
+
