@@ -7,7 +7,7 @@ The input dataset - https://www.kaggle.com/code/kashafabbas036/diabetes-dataset-
 **The Challenge: Precision in Diabetes Classification**
 Accurate and early classification of diabetes is crucial for timely intervention and improved patient outcomes. Existing methods often struggle with optimal predictive performance and accessibility for non-technical users.
 
-**Our Solution: SUGAR**
+**Solution: SUGAR**
 This project introduces SUGAR (Smart Utilization of Glucose & AI for Risk prediction), a machine learning tool built to enhance the precision of diabetes classification. Leveraging the comprehensive Kaggle Diabetes Prediction Dataset, SUGAR develops and evaluates advanced predictive models. Our primary goal is to identify the most effective classification model, with the ultimate aim of deploying it via a user-friendly web server to make accurate diabetes risk prediction readily accessible.
 
 ### Initial data exploration
@@ -28,5 +28,7 @@ In the above heatmap, **HbA1c_level (40%)*** and ***blood_glucose_level (42%)***
 The same can be seen in the shap plot
 ![Shap plot showing the feature importance](images/lightGBM_shap_plot.png)
 
-The most impactful features are clearly num_HbA1c_level and num_blood_glucose_level, followed by num_age and num_bmi. A consistent trend observed is that higher values (red dots) in these top features strongly push the model towards predicting diabetes (positive SHAP values), while lower values (blue dots) decrease that likelihood. This directly aligns with medical understanding, confirming the model relies on diagnostically relevant indicators for robust and interpretable classifications.
+The most impactful features are clearly ***num_HbA1c_level*** and ***num_blood_glucose_level***, followed by num_age and num_bmi. A consistent trend observed is that higher values (red dots) in these top features strongly push the model towards predicting diabetes (positive SHAP values), while lower values (blue dots) decrease that likelihood. This directly aligns with medical understanding, confirming the model relies on diagnostically relevant indicators for robust and interpretable classifications.
 
+
+### Model building
