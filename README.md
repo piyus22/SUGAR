@@ -15,20 +15,20 @@ This project introduces SUGAR (Smart Utilization of Glucose & AI for Risk predic
 2. pip install requirements.txt (Installs all the packages)
 3. diabetes_analysis.ipynb script - does the data exploration step and preliminary analysis
 4. diabetes_prediction.ipynb script - does the modelling and tuning of the model
-5. lightGBM_model.pkl - the pickel file for the initial model
-6. optimized_lightgbm_model.pkl - the pickel file for the final model
+5. lightGBM_model.pkl - the pickle file for the initial model
+6. optimized_lightgbm_model.pkl - the pickle file for the final model
 
 ### Initial data exploration
 The first step is to explore the dataset to understand its structure, identify key features, and uncover initial patterns or anomalies.
 
 ![Binning of Age into groups and diabetes comparison across the gender](images/diabetes_prevelance_age_group.png)
 
-Followed by looking into distribution of blood glucose level across genders
+Next, we examined the distribution of blood glucose level across genders
 ![Distribution of blood glucose level](images/distribution_blood_glucose.png)
 
 
 
-Based on the dataset, further explored the key features that have an imapct in diabetes prediction
+Based on the dataset, further explored the key features that have an impact in diabetes prediction
 ![Heatmap of features impacting diabetes](images/heatmap_diabetes_features.png)
 
 In the above heatmap, **HbA1c_level (40%)*** and ***blood_glucose_level (42%)*** exhibit a significant positive correlation with diabetes. This strong relationship is medically consistent: higher values in these crucial blood markers directly indicate a greater probability of diabetes.
