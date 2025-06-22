@@ -10,6 +10,13 @@ Accurate and early classification of diabetes is crucial for timely intervention
 **Solution: SUGAR**
 This project introduces SUGAR (Smart Utilization of Glucose & AI for Risk prediction), a machine learning tool built to enhance the precision of diabetes classification. Leveraging the comprehensive Kaggle Diabetes Prediction Dataset, SUGAR develops and evaluates advanced predictive models. Our primary goal is to identify the most effective classification model, with the ultimate aim of deploying it via a user-friendly web server to make accurate diabetes risk prediction readily accessible.
 
+### Installation & scripts
+1. pip install requirements.txt (Installs all the packages)
+2. diabetes_analysis.ipynb script - does the data exploration step and preliminary analysis
+3. diabetes_prediction.ipynb script - does the modelling and tuning of the model
+4. lightGBM_model.pkl - the pickel file for the initial model
+5. optimized_lightgbm_model.pkl - the pickel file for the final model
+
 ### Initial data exploration
 The first step is to explore the dataset to understand its structure, identify key features, and uncover initial patterns or anomalies.
 
