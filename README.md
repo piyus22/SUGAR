@@ -32,3 +32,19 @@ The most impactful features are clearly ***num_HbA1c_level*** and ***num_blood_g
 
 
 ### Model building
+To built the model the dataset was split into training and testing
+![Training and testing set](images/training_Data_pre_smote.png)
+At this point it is clearly visible that there is class imbalance and to deal with it SMOTE was used and 
+post SMOTE the training set looked like
+![Training set post SMOTE](images/Smote_data.png)
+
+
+
+Built multiple binary classifiers which are as follows with their recorded performance:-
+
+
+![ROC/AUC Curve for the models built](images/ROC_curve_all_models.png)
+
+Looking at the above it was clear that the lightGBM model performed the best 
+![Model trained on post SMOTE data ](images/pre_tuning_lightgbm.png)
+
