@@ -1,2 +1,8 @@
-# Ignore the notes.txt files
+# Ignore the notes.txt file
 *notes.txt
+
+# ignore the images directory
+images/
+
+# ignore the catboost_info directory
+catboost_info/
