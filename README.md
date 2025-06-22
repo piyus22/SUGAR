@@ -41,9 +41,11 @@ post SMOTE the training set looked like
 
 
 Built multiple binary classifiers which are as follows with their recorded performance:-
-
-
 ![ROC/AUC Curve for the models built](images/ROC_curve_all_models.png)
+
+
+
+![table for all the models and their performance](images/training_dataset_table.png)
 
 Looking at the above it was clear that the lightGBM model performed the best 
 ![Model trained on post SMOTE data ](images/pre_tuning_lightgbm.png)
