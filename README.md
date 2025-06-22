@@ -56,7 +56,6 @@ The updated parameters are as follows:-
 ![fine tuned LightGBM parameters](images/lightGBM_fine_tuned_parameters.png)
 
 The final resultant model has the following performance
-![fine tuned LightGBM parameters](images/lightGBM_fine_tuned_parameters.png)
 ![confusion matrix and ROC for the optimized model](images/lightGBM_fine_tuned.png)
 ![resultant performance metrics for the model](images/LightGBM_fine_tuned_table.png)
 
