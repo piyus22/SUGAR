@@ -50,7 +50,7 @@ Built multiple binary classifiers which are as follows with their recorded perfo
 Looking at the above it was clear that the lightGBM model with SMOTE performed the best followed by Gradient boosting with SMOTE which is close second in terms of overall performance
 ![Model trained on post SMOTE data ](images/pre_tuning_lightgbm.png)
 
-### Followed by the above results, decided to fine tune the lightGBM model to see if the model can be improved even more
+### Model Fine-Tuning: Optimizing LightGBM Performance
 
 The updated parameters are as follows:-
 ![fine tuned LightGBM parameters](images/lightGBM_fine_tuned_parameters.png)
