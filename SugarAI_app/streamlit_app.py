@@ -12,7 +12,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, "model", "optimized_lightgbm_model.pkl")
 data_path = os.path.join(BASE_DIR, "data", "diabetes_prediction_dataset.csv")
-logo_path = os.path.join(BASE_DIR, "images", "logo.jpeg")  # ✅ fixed absolute path
+logo_path = "images/logo.jpeg" 
 
 # --- Helper to encode logo ---
 def get_base64_image(image_path):
