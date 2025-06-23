@@ -8,7 +8,7 @@ from scipy.stats import gaussian_kde
 
 # Load model and dataset
 model = joblib.load("model/optimized_lightgbm_model.pkl")
-dataset = pd.read_csv("data/cleaned_diabetes_data.csv")
+dataset = pd.read_csv("data/diabetes_prediction_dataset.csv")
 
 # Streamlit page config
 st.set_page_config(page_title="SUGAR AI: Diabetes Predictor", page_icon="🩺", layout="centered")
