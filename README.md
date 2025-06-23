@@ -20,7 +20,7 @@ This project introduces SUGAR (Smart Utilization of Glucose & AI for Risk predic
 4. diabetes_prediction.ipynb script - does the modelling and tuning of the model
 5. lightGBM_model.pkl - the pickle file for the initial model
 6. optimized_lightgbm_model.pkl - the pickle file for the final model
-7. For app developed
+7. For app developed - SugarAI_app(run streamlit_app.py)
 
 ### Initial data exploration
 The first step is to explore the dataset to understand its structure, identify key features, and uncover initial patterns or anomalies.
