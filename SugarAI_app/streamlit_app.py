@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 MODEL_PATH = 'optimized_lightgbm_model.pkl'
 DATASET_PATH = 'diabetes_prediction_dataset.csv'
 # Assuming 'image_9af9ba.jpg' is your logo. Make sure it's in the same directory.
-LOGO_PATH = 'image_9af9ba.jpg'
+LOGO_PATH = 'SugarAI_app/static/images/logo.jpeg'
 
 # --- Custom CSS (from style.css) ---
 # Embed this directly into Streamlit using st.markdown(unsafe_allow_html=True)
