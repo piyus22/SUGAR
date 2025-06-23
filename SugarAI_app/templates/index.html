@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUGAR AI: Diabetes Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="SUGAR AI Logo" class="app-logo">
+
+            <p class="tagline">Your Personal Diabetes Risk Assessment Tool</p>
+        </header>
+
+        <section class="intro">
+            <p>
+                Provide the patient's health details below, and SUGAR AI will estimate their risk of diabetes,
+                along with a comparison to a broader population.
+            </p>
+        </section>
+
+        {% if error %}
+            <div class="alert error-alert">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+
+        <section class="input-form-section">
+            <h2><span class="icon">👤</span> Patient Information</h2>
+            <form method="POST" action="/">
+                <div class="form-columns">
+                    <div class="form-column">
+                        <h3>Demographics & Basic Health</h3>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="Female" {% if form_data.gender == 'Female' %}selected{% endif %}>Female</option>
+                                <option value="Male" {% if form_data.gender == 'Male' %}selected{% endif %}>Male</option>
+                                <option value="Other" {% if form_data.gender == 'Other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" name="age" min="1" max="120" value="{{ form_data.age }}" required>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="hypertension" name="hypertension" {% if form_data.hypertension == 'on' %}checked{% endif %}>
+                            <label for="hypertension">Hypertension (High Blood Pressure)</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="heart_disease" name="heart_disease" {% if form_data.heart_disease == 'on' %}checked{% endif %}>
+                            <label for="heart_disease">Heart Disease</label>
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <h3>Lifestyle & Lab Results</h3>
+                        <div class="form-group">
+                            <label for="smoking_history">Smoking History</label>
+                            <select id="smoking_history" name="smoking_history" required>
+                                <option value="never" {% if form_data.smoking_history == 'never' %}selected{% endif %}>Never</option>
+                                <option value="No Info" {% if form_data.smoking_history == 'No Info' %}selected{% endif %}>No Info</option>
+                                <option value="former" {% if form_data.smoking_history == 'former' %}selected{% endif %}>Former</option>
+                                <option value="current" {% if form_data.smoking_history == 'current' %}selected{% endif %}>Current</option>
+                                <option value="ever" {% if form_data.smoking_history == 'ever' %}selected{% endif %}>Ever</option>
+                                <option value="not current" {% if form_data.smoking_history == 'not current' %}selected{% endif %}>Not Current</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bmi">BMI (Body Mass Index)</label>
+                            <input type="number" id="bmi" name="bmi" min="10.0" max="60.0" step="0.1" value="{{ form_data.bmi }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hba1c_level">HbA1c Level (%)</label>
+                            <input type="number" id="hba1c_level" name="hba1c_level" min="3.0" max="15.0" step="0.1" value="{{ form_data.hba1c_level }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="blood_glucose_level">Blood Glucose Level (mg/dL)</label>
+                            <input type="number" id="blood_glucose_level" name="blood_glucose_level" min="50" max="300" step="1" value="{{ form_data.blood_glucose_level }}" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="predict-button"><span class="icon">✨</span> Predict Diabetes Risk</button>
+            </form>
+        </section>
+
+        {% if prediction_result %}
+            <section class="results-section">
+                <h2><span class="icon">💡</span> Prediction Results</h2>
+                <div class="result-box">
+                    <p class="prediction-status {{ 'diabetes-risk' if 'Diabetes' in prediction_result else 'no-diabetes-risk' }}">
+                        {{ prediction_result }}
+                    </p>
+                    <p class="probability">Probability of Diabetes: <strong>{{ probability }}</strong></p>
+
+                    <div class="risk-interpretation">
+                        {% if probability|float >= 0.7 %}
+                            <div class="alert danger-alert">
+                                <strong>❗ High Risk:</strong> It is highly recommended to consult a medical professional for further evaluation and management. This indicates a significant likelihood of diabetes.
+                            </div>
+                        {% elif probability|float >= 0.4 %}
+                            <div class="alert warning-alert">
+                                <strong>🔶 Moderate Risk:</strong> Consider lifestyle changes, regular health check-ups, and discussions with a doctor. Early intervention can make a difference.
+                            </div>
+                        {% else %}
+                            <div class="alert success-alert">
+                                <strong>🟢 Low Risk:</strong> Maintain a healthy lifestyle, including balanced diet and regular exercise. Regular check-ups are always advisable for preventive health.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="plotly-chart-section">
+    <h2><span class="icon">📊</span> Your Risk vs. Population Distribution</h2>
+    <p class="risk-rank-text">
+        Your predicted diabetes probability of <strong class="highlight-prob">{{ probability }}</strong> means your risk is higher than
+        <strong class="highlight-rank">{{ percentile_rank_display }}%</strong> of individuals in our historical data.
+    </p>
+    {% if seaborn_plot_url %}
+        <img src="{{ seaborn_plot_url }}" alt="Diabetes Risk Distribution Plot" class="plot-image">
+    {% else %}
+        <p>Plot could not be generated. Check server logs for errors.</p>
+    {% endif %}
+</div>
+            </section>
+        {% endif %}
+
+        <footer>
+            <p class="footer-text">Powered by SUGAR AI | Created with ❤️ Flask & Seaborn</p>
+            <div class="footer-links">
+                <a href="https://github.com/your-github-profile" target="_blank">GitHub</a> |
+                <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank">LinkedIn</a>
+            </div>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> This application is for informational and educational purposes only and should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult a healthcare professional.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
