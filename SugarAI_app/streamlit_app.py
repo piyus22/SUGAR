@@ -9,16 +9,16 @@ import base64
 import os
 
 # --- Resolve absolute paths ---
-BASE_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, "model", "optimized_lightgbm_model.pkl")
 data_path = os.path.join(BASE_DIR, "data", "diabetes_prediction_dataset.csv")
-logo_path = os.path.join( "images", "logo.jpeg")
+logo_path = os.path.join(BASE_DIR, "images", "logo.jpeg")  # ✅ fixed absolute path
 
 # --- Helper to encode logo ---
 def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         encoded = base64.b64encode(img_file.read()).decode()
-    return f"data:images/jpeg;base64,{encoded}"
+    return f"data:image/jpeg;base64,{encoded}"  # ✅ corrected 'images' → 'image'
 
 # --- Load model and dataset ---
 model = joblib.load(model_path)
