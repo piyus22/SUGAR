@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
 
 # Load model and dataset
-model = joblib.load("model/lgbm_model.pkl")
+model = joblib.load("model/optimized_lightgbm_model.pkl")
 dataset = pd.read_csv("data/cleaned_diabetes_data.csv")
 
 # Streamlit page config
