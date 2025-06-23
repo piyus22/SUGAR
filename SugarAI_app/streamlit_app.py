@@ -35,13 +35,15 @@ st.set_page_config(page_title="SUGAR AI: Diabetes Predictor", page_icon="🩺", 
 # --- Header + Disclaimer ---
 st.markdown(
     f"""
-    <div style="text-align: center;">
+    <div style="text-align: center; max-width: 700px; margin: auto;">
         <img src="{get_base64_image(logo_path)}" width="250" style="margin-bottom: 10px;" />
         <h1 style="color: #E91E63;">🩺 SUGAR AI: Diabetes Predictor</h1>
-        <p style="font-size: 17px; color: #555;">Your Personal Diabetes Risk Assessment Tool</p>
+        <p style="font-size: 17px; color: #aaa;">Your Personal Diabetes Risk Assessment Tool</p>
     </div>
-    <div style="margin-top: 10px; background-color: #f9f9f9; padding: 10px; border-radius: 8px;">
-        <b>Disclaimer:</b> This application is designed for <b>educational and illustrative purposes only</b>. It is not intended to diagnose, treat, or replace medical advice. The model is trained on a public dataset available on <a href="https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset" target="_blank"><b>Kaggle</b></a>. Always consult a qualified healthcare professional for any medical concerns.
+    <div style="margin: 10px auto 20px auto; background-color: rgba(240,240,240,0.1); padding: 12px 16px; border-radius: 8px; max-width: 700px; font-size: 15px; line-height: 1.5; text-align: justify; color: inherit;">
+        <b>Disclaimer:</b> This application is designed for <b>educational and illustrative purposes only</b>. It is not intended to diagnose, treat, or replace medical advice. The model is trained on a public dataset available on 
+        <a href="https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset" target="_blank" style="text-decoration: none;"><b>Kaggle</b></a>. 
+        Always consult a qualified healthcare professional for any medical concerns.
     </div>
     """,
     unsafe_allow_html=True
@@ -131,13 +133,11 @@ if submitted:
     else:
         st.success("🟢 Low Risk: Maintain healthy habits and preventive care.")
 
-    # --- Risk Distribution ---
     st.markdown("### 📊 Your Risk vs. Population Distribution")
     population_probs = model.predict_proba(dataset.drop(columns=["diabetes"]))[:, 1]
     kde = gaussian_kde(population_probs)
     x_vals = np.linspace(0, 1, 1000)
     y_vals = kde(x_vals)
-
     fig, ax = plt.subplots(figsize=(8, 4))
     ax.plot(x_vals, y_vals, color='#3F51B5')
     ax.fill_between(x_vals, y_vals, alpha=0.1)
@@ -150,7 +150,6 @@ if submitted:
     percentile_rank = round((population_probs < probability).mean() * 100, 1)
     st.markdown(f"📈 Your diabetes risk is higher than <b>{percentile_rank}%</b> of individuals in the dataset.", unsafe_allow_html=True)
 
-    # --- Gender-Based Distributions ---
     gender_filtered = dataset[dataset["gender"] == gender_val]
 
     def plot_metric_distribution(values, input_value, label, unit):
@@ -172,15 +171,12 @@ if submitted:
     if not gender_filtered.empty:
         st.markdown("### 🧪 HbA1c Level Distribution (Compared to Same Gender)")
         plot_metric_distribution(gender_filtered["HbA1c_level"].dropna(), hba1c_level, "HbA1c Level", "%")
-
-        st.markdown("### 🩸 Blood Glucose Level Distribution (Compared to Same Gender)")
+        st.markdown("### 🡨‍🩺 Blood Glucose Level Distribution (Compared to Same Gender)")
         plot_metric_distribution(gender_filtered["blood_glucose_level"].dropna(), blood_glucose_level, "Blood Glucose Level", "mg/dL")
 
-    # --- Input View ---
-    with st.expander("🧾 View Submitted Information"):
+    with st.expander("🗒️ View Submitted Information"):
         st.json(input_data.to_dict(orient="records")[0])
 
-    # --- Model Evaluation ---
     with st.expander("📊 View Model Performance (LightGBM Evaluation)"):
         st.image(performance_image1)
         st.image(performance_image2)
@@ -194,10 +190,10 @@ st.markdown(
             Built with ❤️ by <b>SugarAI</b><br>
             <img src="{get_base64_image(logo_path)}" width="40" style="margin: 10px;" />
             <a href="https://github.com/piyus22/SUGAR" target="_blank">
-                <img src="{GITHUB_ICON_URL}" width="30" style="margin: 0 10px;" />
+                <img src="{GITHUB_ICON_URL}" width="26" style="margin: 0 10px; filter: invert(1);" />
             </a>
             <a href="https://www.linkedin.com/in/piyus-mohanty/" target="_blank">
-                <img src="{LINKEDIN_ICON_URL}" width="30" style="margin: 0 10px;" />
+                <img src="{LINKEDIN_ICON_URL}" width="26" style="margin: 0 10px; filter: invert(1);" />
             </a>
         </p>
     </div>
