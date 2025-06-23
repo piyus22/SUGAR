@@ -60,7 +60,7 @@ if submitted:
         "heart_disease": int(heart_disease),
         "smoking_history": smoking_map[smoking_history],
         "bmi": bmi,
-        "hba1c_level": hba1c_level,
+        'HbA1c_level': hba1c_level,
         "blood_glucose_level": blood_glucose_level
     }])
 
