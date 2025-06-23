@@ -18,7 +18,7 @@ logo_path = os.path.join( "images", "logo.jpeg")
 def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         encoded = base64.b64encode(img_file.read()).decode()
-    return f"data:image/jpeg;base64,{encoded}"
+    return f"data:images/jpeg;base64,{encoded}"
 
 # --- Load model and dataset ---
 model = joblib.load(model_path)
