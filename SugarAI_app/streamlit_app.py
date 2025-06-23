@@ -6,22 +6,29 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
 import base64
+import os
 
-# --- Helper to encode local logo ---
+# --- Resolve absolute paths ---
+BASE_DIR = os.path.dirname(__file__)
+model_path = os.path.join(BASE_DIR, "model", "optimized_lightgbm_model.pkl")
+data_path = os.path.join(BASE_DIR, "data", "diabetes_prediction_dataset.csv")
+logo_path = os.path.join(BASE_DIR, "images", "logo.jpeg")
+
+# --- Helper to encode logo ---
 def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         encoded = base64.b64encode(img_file.read()).decode()
     return f"data:image/jpeg;base64,{encoded}"
 
 # --- Load model and dataset ---
-model = joblib.load("model/optimized_lightgbm_model.pkl")
-dataset = pd.read_csv("data/diabetes_prediction_dataset.csv")
+model = joblib.load(model_path)
+dataset = pd.read_csv(data_path)
 
-# --- Streamlit Config ---
+# --- Streamlit Page Config ---
 st.set_page_config(page_title="SUGAR AI: Diabetes Predictor", page_icon="🩺", layout="centered")
 
-# --- Header with Logo ---
-image_base64 = get_base64_image("images/logo.jpeg")
+# --- Display Header with Logo ---
+image_base64 = get_base64_image(logo_path)
 st.markdown(
     f"""
     <div style="text-align: center;">
@@ -33,13 +40,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- Intro ---
+# --- Description ---
 st.markdown("""
 Provide the patient's health details below, and SUGAR AI will estimate their risk of diabetes,
 along with a comparison to a broader population.
 """)
 
-# --- Form Input ---
+# --- Input Form ---
 with st.form("diabetes_form"):
     st.markdown("### 👤 Patient Information")
 
@@ -61,7 +68,7 @@ with st.form("diabetes_form"):
 
     submitted = st.form_submit_button("✨ Predict Diabetes Risk")
 
-# --- Prediction Logic ---
+# --- Prediction Output ---
 if submitted:
     gender_map = {"Female": 0, "Male": 1, "Other": 2}
     smoking_map = {
@@ -80,11 +87,12 @@ if submitted:
         "blood_glucose_level": blood_glucose_level
     }])
 
+    # --- Predict ---
     prediction = model.predict(input_data)[0]
     probability = model.predict_proba(input_data)[0][1]
     probability_percent = round(probability * 100, 2)
 
-    # --- Results Display ---
+    # --- Result Text ---
     st.markdown("### 💡 Prediction Results")
 
     if prediction == 1:
@@ -108,7 +116,7 @@ if submitted:
     else:
         st.success("🟢 Low Risk: Maintain healthy habits and preventive care.")
 
-    # --- KDE Plot ---
+    # --- Risk Distribution Plot ---
     st.markdown("### 📊 Your Risk vs. Population Distribution")
 
     population_probs = model.predict_proba(dataset.drop(columns=["diabetes"]))[:, 1]
@@ -129,6 +137,6 @@ if submitted:
     percentile_rank = round((population_probs < probability).mean() * 100, 1)
     st.markdown(f"Your risk is higher than **{percentile_rank}%** of individuals in our data.")
 
-    # --- Show Input Summary ---
+    # --- Show Submitted Info ---
     with st.expander("🧾 View Submitted Information"):
         st.json(input_data.to_dict(orient="records")[0])
