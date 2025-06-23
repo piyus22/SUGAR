@@ -3,6 +3,9 @@ A machine learning-powered tool designed for robust diabetes classification from
 
 The input dataset - https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset
 
+**Deployed app(work in progress)** - https://sugar-ai.streamlit.app/ 
+
+
 
 **The Challenge: Precision in Diabetes Classification**
 Accurate and early classification of diabetes is crucial for timely intervention and improved patient outcomes. Existing methods often struggle with optimal predictive performance and accessibility for non-technical users.
@@ -17,6 +20,7 @@ This project introduces SUGAR (Smart Utilization of Glucose & AI for Risk predic
 4. diabetes_prediction.ipynb script - does the modelling and tuning of the model
 5. lightGBM_model.pkl - the pickle file for the initial model
 6. optimized_lightgbm_model.pkl - the pickle file for the final model
+7. For app developed
 
 ### Initial data exploration
 The first step is to explore the dataset to understand its structure, identify key features, and uncover initial patterns or anomalies.
