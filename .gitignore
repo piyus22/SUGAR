@@ -2,7 +2,7 @@
 *notes.txt
 
 # ignore the images directory
-images/
+# images/
 
 # ignore the catboost_info directory
 catboost_info/
