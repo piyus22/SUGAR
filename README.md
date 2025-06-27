@@ -1,4 +1,7 @@
 # SUGAR: Smart Utilization of Glucose & AI for Risk Prediction
+![Logo of the project](images/logo.jpeg)
+
+
 A machine learning-powered tool designed for robust diabetes classification from patient datasets, aiming for web-server deployment.
 
 The input dataset - https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset

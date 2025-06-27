@@ -171,7 +171,7 @@ if submitted:
     if not gender_filtered.empty:
         st.markdown("### 🧪 HbA1c Level Distribution (Compared to Same Gender)")
         plot_metric_distribution(gender_filtered["HbA1c_level"].dropna(), hba1c_level, "HbA1c Level", "%")
-        st.markdown("### 🩸 Blood Glucose Level Distribution (Compared to Same Gender)")
+        st.markdown("###  Blood Glucose Level Distribution (Compared to Same Gender)")
         plot_metric_distribution(gender_filtered["blood_glucose_level"].dropna(), blood_glucose_level, "Blood Glucose Level", "mg/dL")
 
     with st.expander("🗒️ View Submitted Information"):
